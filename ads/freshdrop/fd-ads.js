@@ -42,8 +42,8 @@ function(c,a){c.fillStyle="#16162e";c.fillRect(0,0,1080,1080);c.strokeStyle="#2a
   [[60,60,580,580],[660,60,360,280],[660,360,360,280],[60,660,960,360]].forEach(function(b,i){c.fillStyle=i===1?a.acc:i===2?C.K:"#232347";R(c,b[0],b[1],b[2],b[3],36);c.fill()});
   photo(c,a,90,90,520,520,28);c.font=F(30,600);c.fillStyle="#fff";c.fillText("PRICE",700,120);c.font=F(84,700);c.fillText(eur(a.price),700,240);c.font=F(30,600);c.fillText("COMPONENT",700,420);c.font=F(60,700);c.fillText("Ships fast",700,520);
   c.font=F(84,700);c.fillStyle=C.W;c.fillText(a.head,100,800);c.font=F(32,400,"sys");c.fillStyle=C.M;c.fillText(a.sub,100,870);pill(c,"Shop now \u2192",100,920,28,a.acc,lum(a.acc)>.55?"#111":"#fff");},
-function(c,a){c.fillStyle=C.BG;c.fillRect(0,0,1080,1080);photo(c,a,560,460,460,560,230,"#fff");c.save();c.font=F(250,700);c.fillStyle=a.acc;var w=a.head.toUpperCase().split(" ");
-  w.forEach(function(t,i){c.fillStyle=i%2?"#FFFFFF":a.acc;c.fillText(t,-10+(i%2)*120,240+i*220)});c.restore();c.font=F(34,500,"sys");c.fillStyle=C.W;c.fillText(a.sub,50,1010);c.font=F(56,700);c.fillStyle=a.acc;c.fillText(eur(a.price),50,940);},
+function(c,a){c.fillStyle=C.BG;c.fillRect(0,0,1080,1080);photo(c,a,620,560,420,460,210,"#fff");c.save();c.font=F(200,700);c.fillStyle=a.acc;var w=a.head.toUpperCase().split(" ");
+  w.forEach(function(t,i){c.fillStyle=i%2?"#FFFFFF":a.acc;c.fillText(t,40+(i%2)*80,290+i*200)});c.restore();c.font=F(34,500,"sys");c.fillStyle=C.W;c.fillText(a.sub,50,1010);c.font=F(56,700);c.fillStyle=a.acc;c.fillText(eur(a.price),50,940);},
 function(c,a){c.fillStyle="#FFFFFF";c.fillRect(0,0,1080,1080);logo(c,60,100,40,C.BG);c.font=F(26,500,"sys");c.fillStyle="#555";c.fillText("Shop    Bundles    About",640,96);
   c.textAlign="center";c.font=F(92,700);c.fillStyle=C.BG;c.fillText(a.head,540,280);c.font=F(34,400,"sys");c.fillStyle="#555";c.fillText(a.sub,540,345);c.textAlign="left";
   pill(c,"Shop now \u2014 "+eur(a.price)+" \u2192",300,390,30,a.acc,"#fff");photo(c,a,140,520,800,500,48,"#F1EEFF");},
@@ -58,15 +58,18 @@ function(c,a){var pal=[a.acc,"#FFD600","#00C2FF","#111111","#FFFFFF"];pal.forEac
 function(c,a){c.fillStyle="#F4F2FA";c.fillRect(0,0,1080,1080);c.font=F(500,700);c.fillStyle=a.acc;c.fillText("Aa",40,470);c.font=F(26,600,"sys");c.fillStyle=C.BG;c.fillText("FREDOKA \u2014 BOLD 700",60,560);
   c.fillRect(60,580,960,3);c.font=F(180,700);c.fillStyle=C.BG;c.fillText(a.head,60,780);c.font=F(36,500);c.fillStyle="#444";c.fillText(a.sub,60,850);c.font=F(72,700);c.fillStyle=C.K;c.fillText(eur(a.price),60,980);photo(c,a,700,640,320,320,160,"#fff");}
 ];
-function ctaBadge(c,a,i){var pos=[[720,60],[300,930],[0,0],[0,0],[700,60],[0,0],[420,40],[0,0],[0,0],[400,925]][i];if(!pos[0]&&!pos[1])return;
+function ctaBadge(c,a,i){var pos=[[720,60],[300,930],[0,0],[0,0],[730,30],[0,0],[420,40],[0,0],[0,0],[400,925]][i];if(!pos[0]&&!pos[1])return;
   c.save();c.shadowColor="rgba(0,0,0,.35)";c.shadowBlur=24;pill(c,"Shop now \u2192",pos[0],pos[1],30,a.acc,lum(a.acc)>.55?"#111":"#fff");c.restore()}
 function lum(h){var n=parseInt(h.slice(1),16);return (.299*(n>>16)+.587*(n>>8&255)+.114*(n&255))/255}
-function draw(i){var c=cvs[i].getContext("2d"),a=ADS[i];c.clearRect(0,0,1080,1080);D[i](c,a);if(i!==0&&i!==5)logo(c,i===1||i===7||i===9?820:60,i===1||i===7||i===9?100:1040,34,i===1||i===7||i===9?C.BG:C.W);if(i===0)logo(c,60,90,34);
+function draw(i){var c=cvs[i].getContext("2d"),a=ADS[i];c.clearRect(0,0,1080,1080);D[i](c,a);if(i===8)logo(c,60,120,34,"#141414");if(i!==0&&i!==5&&i!==8)logo(c,i===1||i===7||i===9?820:60,i===1||i===7||i===9?100:1040,34,i===1||i===7||i===9?C.BG:C.W);if(i===0)logo(c,60,90,34);
   if(!a.noCta)ctaBadge(c,a,i);c.font=F(20,500,"sys");c.fillStyle="rgba(128,128,150,.9)";c.textAlign="right";c.fillText("amireven-crypto.github.io/freshdrop",1050,1066);c.textAlign="left";
   cvs[i].setAttribute("aria-label","Ad "+(i+1)+": "+a.head+", "+PRODUCTS[a.prod][1]+" "+eur(a.price))}
 var g=document.getElementById("gallery");
-g.innerHTML=ADS.map(function(a,i){return '<figure class="card ad"><canvas width="1080" height="1080" role="img"></canvas><figcaption><span class="badge">Inspired by '+a.site+' style</span> <span class="meta">'+a.style+'</span><br><button class="btn ghost ed" data-i="'+i+'">Edit</button> <button class="btn primary ex" data-i="'+i+'">Export PNG</button></figcaption></figure>'}).join("");
-cvs=[].slice.call(g.querySelectorAll("canvas"));
+var SC=window.FD_SCORES||{order:ADS.map(function(_,i){return i}),scores:{}};
+var order=SC.order;
+g.innerHTML=order.map(function(i,rk){var a=ADS[i],sc=SC.scores[i];return '<figure class="card ad'+(rk===0?' winner':'')+'" id="ad-'+(i+1)+'"><div class="rk">'+(rk===0?'<span class="badge acc">\u{1F451} Winner</span> ':'')+'<span class="badge">#'+(rk+1)+'</span>'+(sc?' <span class="meta">Score '+sc.total.toFixed(1)+'</span>':'')+'</div><canvas width="1080" height="1080" role="img" data-i="'+i+'"></canvas><figcaption><span class="badge">Inspired by '+a.site+' style</span> <span class="meta">'+a.style+'</span><br><a class="btn primary" href="https://amireven-crypto.github.io/freshdrop/">Shop now</a> <button class="btn ghost ed" data-i="'+i+'">Edit</button> <button class="btn ghost ex" data-i="'+i+'">Export PNG</button></figcaption></figure>'}).join("");
+cvs=[];[].slice.call(g.querySelectorAll("canvas")).forEach(function(c){cvs[+c.dataset.i]=c});
+window.FD_ADS=ADS;window.FD_READY=false;
 var f=function(id){return document.getElementById(id)};
 f("prod").innerHTML=PRODUCTS.map(function(p,i){return '<option value="'+i+'">'+p[1]+'</option>'}).join("");
 function load(i){sel=i;var a=ADS[i];f("which").textContent="Editing ad "+(i+1)+" \u2014 Inspired by "+a.site+" style";f("head").value=a.head;f("sub").value=a.sub;f("price").value=a.price;f("prod").value=a.prod;f("acc").value=a.acc;}
@@ -78,5 +81,5 @@ f("export").addEventListener("click",function(){exp(sel)});
 g.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;var i=+b.dataset.i;if(b.classList.contains("ed")){load(i);f("panel").scrollIntoView({behavior:"smooth"});f("head").focus()}else exp(i)});
 var ps=PRODUCTS.map(function(p){return new Promise(function(res){var im=new Image();im.onload=function(){imgs[p[0]]=im;res()};im.onerror=res;im.src="img/"+p[0]+".webp"})});
 var fp=document.fonts?Promise.all([document.fonts.load('700 40px Fredoka'),document.fonts.load('500 40px Fredoka')]).catch(function(){}):Promise.resolve();
-Promise.all(ps.concat([fp])).then(function(){cvs.forEach(function(_,i){draw(i)});load(0)});
+Promise.all(ps.concat([fp])).then(function(){cvs.forEach(function(_,i){draw(i)});load(order[0]);window.FD_READY=true});
 })();

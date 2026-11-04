@@ -38,7 +38,7 @@ The 10 FreshDrop example ads keep their own bold colours.
 | `websites/` | 3 site templates: landing, small business/service, product shop |
 | `landing/` | 3 landing pages: app launch, event, coming-soon/waitlist (visual-only form) |
 | `ads/` | Post 1080×1080, story 1080×1920, banner 1200×628, editable, **Export PNG** |
-| `ads/freshdrop/` | 10 example FreshDrop ads (1080×1080), each "Inspired by <site> style", editable + PNG export |
+| `ads/freshdrop/` | Ad competition: 10 FreshDrop ads ranked by a measured eye-catch score (`tools/score-ads.js`), (1080×1080), each "Inspired by <site> style", editable + PNG export |
 | `social/` | Quote card, carousel slide 1080×1350, announcement, story highlight cover |
 | `email/` | 3 table-based, inline-styled newsletters with **Copy HTML** |
 | `components/` | Buttons, pills, toggles, inputs, tabs, cards, modal, badges, table, nav with **Copy code** |
