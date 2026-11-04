@@ -67,3 +67,7 @@ PNG export uses the browser's own canvas (`canvas.toBlob`), no libraries.
 
 ## FreshDrop video spots
 `ads/freshdrop/video/ad-1..10.mp4` — 1080×1080 H.264/AAC motion-graphics spots with Hebrew voiceover (edge-tts), rendered from `tools/spot/spot.html` by `tools/render-spots.js` (headless Chrome frames → ffmpeg). The competition page plays them in ranked order, muted autoplay, sound on first click/tap/key.
+
+### v2 voiceover + Dream ad
+- Voices: free Microsoft Edge neural TTS via `edge-tts` (he-IL-AvriNeural / he-IL-HilaNeural), synthesized per sentence with varied rate (+4…+12%) and pitch (+2…+8 Hz), silence-trimmed, stitched with 0.1–0.32 s pauses, EQ + compression, loudnorm −16 LUFS; beat sidechain-ducked under the voice.
+- Ad 11 "Dream ad" combines the strongest traits of the ten; scored with the unchanged `tools/score-ads.js`.

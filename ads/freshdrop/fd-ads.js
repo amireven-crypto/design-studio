@@ -13,10 +13,11 @@ var ADS=[
  {site:"Godly",style:"dark motion-feel",head:"Cut. Cook. Repeat.",sub:"Solid bamboo, gentle on knives.",acc:"#B44DFF"},
  {site:"Lapa Ninja",style:"minimal SaaS",head:"Neck pain? Raise it.",sub:"Better posture in one step.",acc:"#0066FF"},
  {site:"Coolors",style:"palette-driven",head:"Road-trip ready",sub:"The full dog travel bundle.",acc:"#FF3D7F"},
- {site:"Google Fonts",style:"typography-led",head:"Fix it.",sub:"Adjustable wrench, chrome vanadium.",acc:"#FF4500"}];
+ {site:"Google Fonts",style:"typography-led",head:"Fix it.",sub:"Adjustable wrench, chrome vanadium.",acc:"#FF4500"},
+ {site:"Dream ad",style:"best of all 10",head:"Everything. One drop.",sub:"96 products \u00B7 from \u20AC5.99",acc:"#FFE600",dream:true}];
 var C={P:"#7C4DFF",K:"#FF4D8D",C:"#0FB5C9",BG:"#0E0E22",W:"#FFFFFF",M:"#C9C9E0"};
 var imgs={}, sel=0, cvs=[];
-ADS.forEach(function(a,i){a.prod=i;a.price=PRODUCTS[i][2]});
+ADS.forEach(function(a,i){a.prod=i<10?i:3;a.price=PRODUCTS[a.prod][2]});ADS[10].noCta=true;
 function F(px,w,fam){return (w||600)+" "+px+"px "+(fam==="sys"?'system-ui,"Segoe UI",Roboto,Arial,sans-serif':'Fredoka,system-ui,sans-serif')}
 function rr(x,y,w,h,r){x.beginPath();x.roundRect?x.roundRect(arguments[1],arguments[2],arguments[3],arguments[4],arguments[5]):0}
 function R(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath()}
@@ -56,18 +57,27 @@ function(c,a){var pal=[a.acc,"#FFD600","#00C2FF","#111111","#FFFFFF"];pal.forEac
   pal.forEach(function(p,i){c.font=F(22,600,"sys");c.fillStyle=i===4?C.BG:"#fff";c.fillText(p.toUpperCase(),i*216+30,1040)});
   c.fillStyle=C.BG;R(c,140,740,800,220,40);c.fill();c.font=F(70,700);c.fillStyle="#fff";c.fillText(a.head,190,830);c.font=F(30,400,"sys");c.fillStyle=C.M;c.fillText(a.sub+"  \u00B7  "+eur(a.price),190,900);pill(c,"Shop now \u2192",700,780,26,a.acc,"#fff");},
 function(c,a){c.fillStyle="#F4F2FA";c.fillRect(0,0,1080,1080);c.font=F(500,700);c.fillStyle=a.acc;c.fillText("Aa",40,470);c.font=F(26,600,"sys");c.fillStyle=C.BG;c.fillText("FREDOKA \u2014 BOLD 700",60,560);
-  c.fillRect(60,580,960,3);c.font=F(180,700);c.fillStyle=C.BG;c.fillText(a.head,60,780);c.font=F(36,500);c.fillStyle="#444";c.fillText(a.sub,60,850);c.font=F(72,700);c.fillStyle=C.K;c.fillText(eur(a.price),60,980);photo(c,a,700,640,320,320,160,"#fff");}
+  c.fillRect(60,580,960,3);c.font=F(180,700);c.fillStyle=C.BG;c.fillText(a.head,60,780);c.font=F(36,500);c.fillStyle="#444";c.fillText(a.sub,60,850);c.font=F(72,700);c.fillStyle=C.K;c.fillText(eur(a.price),60,980);photo(c,a,700,640,320,320,160,"#fff");},
+function(c,a){c.fillStyle="#000";c.fillRect(0,0,1080,1080);var pal=["#FF2E88","#FFE600","#00C2FF","#7CFF4F","#FF6A00"];
+  pal.forEach(function(p,i){c.fillStyle=p;c.fillRect(i*216,0,216,300)});c.font=F(64,700);c.fillStyle="#000";c.fillText("FreshDrop",50,190);
+  c.fillStyle="#000";c.fillRect(0,300,1080,780);
+  c.font=F(118,700);c.fillStyle="#FFFFFF";c.fillText("EVERYTHING.",50,470);c.fillStyle=a.acc;c.fillText("ONE DROP.",50,600);
+  [[3,690,620,"#FF2E88"],[8,880,560,"#00C2FF"],[4,880,760,"#7CFF4F"]].forEach(function(o){var k=o[0];c.save();c.fillStyle=o[3];c.beginPath();c.arc(o[1],o[2],o[0]===3?0:0,0,7);c.restore()});
+  c.save();c.fillStyle="#FF2E88";c.beginPath();c.arc(880,790,175,0,7);c.fill();c.restore();photo(c,{img:imgs[PRODUCTS[3][0]]},730,640,300,300,150,"#fff");
+  c.font=F(40,700);c.fillStyle="#fff";c.fillText("96 products \u00B7 from \u20AC5.99",50,690);
+  c.save();c.shadowColor="rgba(255,230,0,.5)";c.shadowBlur=40;pill(c,"Shop now \u2192",50,750,64,a.acc,"#000");c.restore();
+}
 ];
-function ctaBadge(c,a,i){var pos=[[720,60],[300,930],[0,0],[0,0],[730,30],[0,0],[420,40],[0,0],[0,0],[400,925]][i];if(!pos[0]&&!pos[1])return;
+function ctaBadge(c,a,i){var pos=[[720,60],[300,930],[0,0],[0,0],[730,30],[0,0],[420,40],[0,0],[0,0],[400,925],[0,0]][i];if(!pos[0]&&!pos[1])return;
   c.save();c.shadowColor="rgba(0,0,0,.35)";c.shadowBlur=24;pill(c,"Shop now \u2192",pos[0],pos[1],30,a.acc,lum(a.acc)>.55?"#111":"#fff");c.restore()}
 function lum(h){var n=parseInt(h.slice(1),16);return (.299*(n>>16)+.587*(n>>8&255)+.114*(n&255))/255}
-function draw(i){var c=cvs[i].getContext("2d"),a=ADS[i];c.clearRect(0,0,1080,1080);D[i](c,a);if(i===8)logo(c,60,120,34,"#141414");if(i!==0&&i!==5&&i!==8)logo(c,i===1||i===7||i===9?820:60,i===1||i===7||i===9?100:1040,34,i===1||i===7||i===9?C.BG:C.W);if(i===0)logo(c,60,90,34);
+function draw(i){var c=cvs[i].getContext("2d"),a=ADS[i];c.clearRect(0,0,1080,1080);D[i](c,a);if(i===8)logo(c,60,120,34,"#141414");if(i!==0&&i!==5&&i!==8&&i!==10)logo(c,i===1||i===7||i===9?820:60,i===1||i===7||i===9?100:1040,34,i===1||i===7||i===9?C.BG:C.W);if(i===0)logo(c,60,90,34);
   if(!a.noCta)ctaBadge(c,a,i);c.font=F(20,500,"sys");c.fillStyle="rgba(128,128,150,.9)";c.textAlign="right";c.fillText("amireven-crypto.github.io/freshdrop",1050,1066);c.textAlign="left";
   cvs[i].setAttribute("aria-label","Ad "+(i+1)+": "+a.head+", "+PRODUCTS[a.prod][1]+" "+eur(a.price))}
 var g=document.getElementById("gallery");
 var SC=window.FD_SCORES||{order:ADS.map(function(_,i){return i}),scores:{}};
-var order=SC.order;
-g.innerHTML=order.map(function(i,rk){var a=ADS[i],sc=SC.scores[i];return '<figure class="card ad'+(rk===0?' winner':'')+'" id="ad-'+(i+1)+'"><div class="rk">'+(rk===0?'<span class="badge acc">\u{1F451} Winner</span> ':'')+'<span class="badge">#'+(rk+1)+'</span>'+(sc?' <span class="meta">Score '+sc.total.toFixed(1)+'</span>':'')+'</div><canvas width="1080" height="1080" role="img" data-i="'+i+'"></canvas><figcaption><span class="badge">Inspired by '+a.site+' style</span> <span class="meta">'+a.style+'</span><br><a class="btn primary" href="https://amireven-crypto.github.io/freshdrop/">Shop now</a> <button class="btn ghost ed" data-i="'+i+'">Edit</button> <button class="btn ghost ex" data-i="'+i+'">Export PNG</button></figcaption></figure>'}).join("");
+var order=SC.order.slice();ADS.forEach(function(_,i){if(order.indexOf(i)<0)order.push(i)});
+g.innerHTML=order.map(function(i,rk){var a=ADS[i],sc=SC.scores[i];return '<figure class="card ad'+(rk===0?' winner':'')+'" id="ad-'+(i+1)+'"><div class="rk">'+(rk===0?'<span class="badge acc">\u{1F451} Winner</span> ':'')+'<span class="badge">#'+(rk+1)+'</span>'+(sc?' <span class="meta">Score '+sc.total.toFixed(1)+'</span>':'')+'</div><canvas width="1080" height="1080" role="img" data-i="'+i+'"></canvas><figcaption><span class="badge">'+(a.dream?'Dream ad \u2014 best of all 10':'Inspired by '+a.site+' style')+'</span> <span class="meta">'+a.style+'</span><br><a class="btn primary" href="https://amireven-crypto.github.io/freshdrop/">Shop now</a> <button class="btn ghost ed" data-i="'+i+'">Edit</button> <button class="btn ghost ex" data-i="'+i+'">Export PNG</button></figcaption></figure>'}).join("");
 cvs=[];[].slice.call(g.querySelectorAll("canvas")).forEach(function(c){cvs[+c.dataset.i]=c});
 window.FD_ADS=ADS;window.FD_READY=false;
 var f=function(id){return document.getElementById(id)};
