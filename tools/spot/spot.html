@@ -45,7 +45,7 @@ function render(t){x.setTransform(1,0,0,1,0,0);var k=scene(t),lt=t-B[k],len=B[k+
   x.fillStyle="rgba(0,0,0,"+(.55*ease((lt-1)/.5))+")";x.fillRect(0,0,1080,1080);
   [["96 products. One store.",a.a1],["Car \u00B7 Dog \u00B7 Home \u00B7 Kitchen \u00B7 Tools",a.a2],["Prices from \u20AC5.99",a.a1]].forEach(function(o,n){var v=ease((lt-1.2-n*.45)/.45);if(v<=0)return;x.save();x.translate(540+(1-v)*900,380+n*170);x.font=F(n===0?76:54,700);var w=x.measureText(o[0]).width+80;x.fillStyle=o[1];R(-w/2,-60,w,120,60);x.fill();x.fillStyle=on(o[1]);x.textAlign="center";x.textBaseline="middle";x.fillText(o[0],0,4);x.restore()})}
  if(k===3){var s=lt<.5?1.6-.6*back(lt/.5):1+.06*(lt-.5)/len;x.save();x.translate(540,540);x.scale(s*.86,s*.86);x.shadowColor="rgba(0,0,0,.5)";x.shadowBlur=60;x.drawImage(AD,-540,-540,1080,1080);x.restore();
-  pill("Ad competition \u00B7 Rank #"+rank+" \u00B7 Score "+score.toFixed(1),540,1030,26,a.a1,ease((lt-.6)/.4))}
+  pill(P[PI][1]+" \u00B7 \u20AC"+P[PI][2].toFixed(2),540,1030,26,a.a1,ease((lt-.6)/.4))}
  if(k===4){x.fillStyle=a.bg[0];x.fillRect(0,0,1080,1080);bg(t);var ls=back(lt/.5);x.save();x.translate(540,330);x.scale(ls,ls);x.rotate((1-ease(lt/.6))*-.6);x.drawImage(IM.logo,-150,-150,300,300);x.restore();
   x.font=F(130,700);x.textAlign="center";x.fillStyle=a.fg;x.globalAlpha=ease((lt-.3)/.4);x.fillText("FreshDrop",540-(1-ease((lt-.3)/.4))*300,620);x.globalAlpha=1;
   var pu=lt>.8?back((lt-.8)/.4)*(1+.05*Math.sin((lt-.8)*7)):0;pill("Shop now \u2192",540,760,52,a.a1,pu);

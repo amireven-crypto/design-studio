@@ -71,3 +71,7 @@ PNG export uses the browser's own canvas (`canvas.toBlob`), no libraries.
 ### v2 voiceover + Dream ad
 - Voices: free Microsoft Edge neural TTS via `edge-tts` (he-IL-AvriNeural / he-IL-HilaNeural), synthesized per sentence with varied rate (+4…+12%) and pitch (+2…+8 Hz), silence-trimmed, stitched with 0.1–0.32 s pauses, EQ + compression, loudnorm −16 LUFS; beat sidechain-ducked under the voice.
 - Ad 11 "Dream ad" combines the strongest traits of the ten; scored with the unchanged `tools/score-ads.js`.
+
+### v3: English voiceover + filmic Dream spot
+- All 11 spots now use consumer-facing English VO (edge-tts en-US-AndrewMultilingualNeural / en-US-AvaMultilingualNeural), per-sentence varied rate/pitch, longer natural pauses, soft breaths, faint room tone + tiny early reflections, −16 LUFS; beat ducked under the voice.
+- Ad 11 is rendered from `tools/spot/dream.html`: real product photos on wood/linen surfaces with contact shadows, handheld micro-shake, push-ins, parallax, rack-focus pulls, 3-subframe motion blur, whip-pans, light leaks, film grain, vignette, editorial serif-italic type, beat-snapped uneven cut rhythm.

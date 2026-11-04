@@ -7,7 +7,7 @@ const out=path.join(__dirname,'..','ads','freshdrop','video');fs.mkdirSync(out,{
 for(let i=0;i<11;i++){if(only&&!only.split(',').includes(String(i+1)))continue;
  const mp3=path.join(AUD,`ad-${i+1}.wav`),ad=+execFileSync('ffprobe',['-v','error','-show_entries','format=duration','-of','csv=p=0',mp3]).toString();
  const D=Math.round((ad+1.8)*10)/10,N=Math.round(D*FPS);
- const pg=await b.newPage();await pg.setViewport({width:1080,height:1080});await pg.goto(`${BASE}tools/spot/spot.html?i=${i}&d=${D}`,{waitUntil:'networkidle0'});await pg.waitForFunction('window.READY');
+ const pg=await b.newPage();await pg.setViewport({width:1080,height:1080});await pg.goto(`${BASE}tools/spot/${i===10?'dream':'spot'}.html?i=${i}&d=${D}`,{waitUntil:'networkidle0'});await pg.waitForFunction('window.READY');
  const ff=spawn('ffmpeg',['-y','-loglevel','error','-f','image2pipe','-framerate',String(FPS),'-i','-','-i',mp3,
   '-f','lavfi','-t',String(D),'-i',"aevalsrc='0.22*sin(2*PI*55*t)*exp(-14*mod(t,0.5))+0.05*sin(2*PI*880*t)*exp(-40*mod(t+0.25,0.5))':s=44100",
   '-filter_complex','[1:a]adelay=500,apad,asplit=2[v][sc];[2:a]volume=0.55,lowpass=f=6000[m0];[m0][sc]sidechaincompress=threshold=0.03:ratio=8:attack=20:release=350[m];[v][m]amix=inputs=2:duration=first:normalize=0,loudnorm=I=-16:TP=-1.5:LRA=9,aresample=44100[a]',
