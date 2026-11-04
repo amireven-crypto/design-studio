@@ -1,6 +1,6 @@
 /* Shared: sidebar rail, toast, copy helper */
 (function(){
-  try{if(localStorage.dsAccent)document.documentElement.style.setProperty('--accent',localStorage.dsAccent)}catch(e){}
+  try{if(localStorage.dsAccentCream)document.documentElement.style.setProperty('--accent',localStorage.dsAccentCream)}catch(e){}
   var root=document.documentElement.dataset.root||'./';
   var items=[['home','','Hub'],['globe','websites/','Websites'],['rocket','landing/','Landing pages'],['megaphone','ads/','Ads'],
     ['share','social/','Social posts'],['mail','email/','Email'],['blocks','components/','Components'],['star','icons/','Icons'],['palette','brand-kit/','Brand kit']];

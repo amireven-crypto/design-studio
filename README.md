@@ -1,6 +1,6 @@
 # Design Studio
 
-A dark, bento-style starter for design work: websites, landing pages, ads, social posts, emails, UI components, icons and a brand kit.
+A cream-and-forest-green, bento-style starter for design work: websites, landing pages, ads, social posts, emails, UI components, icons and a brand kit.
 Plain HTML, CSS and JavaScript. No build step, no outside requests.
 
 **Live:** https://amireven-crypto.github.io/design-studio/
@@ -13,10 +13,23 @@ Plain HTML, CSS and JavaScript. No build step, no outside requests.
 Open `assets/style.css` and change this line at the top:
 
 ```css
---accent:#D4FF3A;
+--accent:#F07A1A;
 ```
 
 You can also pick a colour on the hub page (it is remembered in your browser).
+
+### Colour scheme
+| Role | Colour |
+|---|---|
+| Page background | `#FAF6EC` (cream) |
+| Cards | `#FFFDF7` |
+| Main green (sidebar, headings, tabs, toggles) | `#1F6B4A` |
+| Green tint (surfaces) | `#E3EFE7` |
+| Accent orange (buttons, highlights) | `#F07A1A` with dark text `#13241B` |
+| Orange text on cream | `#A84B00` (passes WCAG AA) |
+| Text | `#13241B`, muted `#46564C` |
+
+The 10 FreshDrop example ads keep their own bold colours.
 
 ## What's inside
 | Folder | What it is |
