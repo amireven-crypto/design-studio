@@ -3,7 +3,7 @@
 <body><canvas id="c" width="1080" height="1080"></canvas>
 <script>
 /* Filmic Dream-ad spot: deterministic render(t). Handheld camera, rack focus, parallax, motion blur, light leaks, grain. */
-var P={trunk:"trunk-organizer",dog:"dog-car-seat-cover",mount:"magnetic-phone-mount",umb:"umbrella-windshield-sunshade",back:"backseat-organizer-tray",kit:"bundle-detailing-starter",board:"bamboo-cutting-board",stand:"aluminium-laptop-stand",trip:"bundle-on-the-road-with-dog",wrench:"adjustable-wrench"};
+var P={trunk:"trunk-organizer",dog:"dog-car-seat-cover",mount:"magnetic-phone-mount",umb:"umbrella-windshield-sunshade",back:"backseat-organizer-tray",kit:"bundle-detailing-starter",board:"bamboo-cutting-board",stand:"aluminium-laptop-stand",trip:"bundle-on-the-road-with-dog",wrench:"adjustable-wrench",cat:"cat-scratching-post",cubes:"packing-cubes-set",bed:"washable-pet-bed",torch:"rechargeable-led-flashlight",mat:"yoga-mat",utensil:"silicone-utensil-set"};
 var q=new URLSearchParams(location.search),D=+q.get("d")||24,c=document.getElementById("c"),X=c.getContext("2d"),IM={},AD,LOGO;
 var off=document.createElement("canvas");off.width=off.height=1080;var x=off.getContext("2d");
 function cl(v){return v<0?0:v>1?1:v}function ease(v){v=cl(v);return 1-Math.pow(1-v,3)}function eio(v){v=cl(v);return v<.5?4*v*v*v:1-Math.pow(-2*v+2,3)/2}
@@ -16,8 +16,8 @@ var LINEN=mk(1080,1080,function(g,w,h){var id=g.createImageData(w,h);for(var i=0
 var GR=[0,1,2,3].map(function(k){return mk(540,540,function(g,w,h){var id=g.createImageData(w,h);for(var i=0;i<id.data.length;i+=4){var v=Math.random()*255;id.data[i]=id.data[i+1]=id.data[i+2]=v;id.data[i+3]=255}g.putImageData(id,0,0)})});
 /* shots: [startBeat, type, opts] ; beats are 0.5 s, timeline scaled to D */
 var BEAT=.5;
-var SH=[["macro",{p:"umb",w:"Everything",tint:["#e9d8c4","#c9a88a"]}],["cut",{p:"trunk",w:"for the car.",tint:["#cfd8d2","#8fa39a"]}],["cut",{p:"trip",w:"for the dog.",tint:["#ead2bf","#c0866a"]}],["cut",{p:"board",w:"for the kitchen.",tint:["#efe6d6","#b9a27f"]}],["cut",{p:"wrench",w:"for the toolbox.",tint:["#d3d6dc","#7d8796"]}],
- ["hero",{p:"umb",tint:["#f1dcc6","#d39a6f"]}],["count",{tint:["#20242c","#0d0f14"]}],["cut",{p:"stand",w:"Sorted.",tint:["#dfe3ea","#9aa6b8"]}],["cut",{p:"kit",w:"Shining.",tint:["#e3ecf3","#7fa2c0"]}],["cut",{p:"back",w:"Ready.",tint:["#e8dcd0","#a98b72"]}],["poster",{tint:["#d9cbbb","#a48d76"]}],["end",{}]];
+var SH=[["macro",{p:"torch",w:"Everything",lab:"Rechargeable LED Flashlight · €20.99",tint:["#d9d4cc","#8f877b"]}],["cut",{p:"cubes",w:"for the trip.",pr:"Packing Cubes Set · €21.99",tint:["#d6dde6","#8b9bb0"]}],["cut",{p:"utensil",w:"for the kitchen.",pr:"Silicone Utensil Set · €18.99",tint:["#efe6d6","#b9a27f"]}],["cut",{p:"mat",w:"for the gym.",pr:"Non-Slip Yoga Mat · €18.99",tint:["#e6dcef","#a08cb8"]}],["cut",{p:"cat",w:"for the cat.",pr:"Cat Scratching Post · €23.99",tint:["#e4ddd2","#a8998a"]}],
+ ["hero",{p:"bed",tint:["#f1e2d2","#c9a385"]}],["count",{tint:["#20242c","#0d0f14"]}],["cut",{p:"mat",w:"Ready.",pr:"",tint:["#e6dcef","#a08cb8"]}],["cut",{p:"cubes",w:"Packed.",pr:"",tint:["#dfe5ec","#98a7b8"]}],["cut",{p:"bed",w:"Home.",pr:"",tint:["#efe2d4","#b89679"]}],["poster",{tint:["#d9cbbb","#a48d76"]}],["end",{}]];
 var W=[3,1.4,1,1.6,1,3.4,3.2,1,1.2,1.4,3,0];/* relative lengths, varied rhythm */
 var ST=[],tot=0;W.forEach(function(w){ST.push(tot);tot+=w});
 var ENDLEN=4.2;function starts(){var avail=D-ENDLEN,s=ST.map(function(v){return Math.round(v/tot*avail/BEAT)*BEAT});s[s.length-1]=Math.round(avail/BEAT)*BEAT;return s}var T0=starts();
@@ -29,6 +29,7 @@ function table(cam,dark){x.save();x.translate(cam*.6,0);x.globalAlpha=dark?.55:.
 function product(k,cx,cy,sz,blur,rot){var im=IM[P[k]];if(!im)return;var s=sz/Math.max(im.width,im.height),w=im.width*s,h=im.height*s;
  var sg=x.createRadialGradient(cx,cy+h*.42,10,cx,cy+h*.42,w*.6);sg.addColorStop(0,"rgba(30,15,5,.45)");sg.addColorStop(1,"rgba(30,15,5,0)");x.save();x.translate(cx,cy+h*.42);x.scale(1,.18);x.translate(-cx,-(cy+h*.42));x.fillStyle=sg;x.fillRect(cx-w,cy+h*.42-w,2*w,2*w);x.restore();
  x.save();if(blur>.3)x.filter="blur("+blur.toFixed(1)+"px)";x.globalCompositeOperation="multiply";x.translate(cx,cy);x.rotate(rot||0);x.drawImage(im,-w/2,-h/2,w,h);x.restore()}
+function glowN(cx,cy,sc){x.save();x.globalCompositeOperation="screen";[-1,1].forEach(function(d){var gx=cx+d*95*sc,g=x.createRadialGradient(gx,cy,0,gx,cy,170*sc);g.addColorStop(0,"rgba(255,236,190,.5)");g.addColorStop(.25,"rgba(255,214,150,.12)");g.addColorStop(1,"rgba(255,200,120,0)");x.fillStyle=g;x.fillRect(gx-300*sc,cy-300*sc,600*sc,600*sc)});x.restore()}
 function bokeh(t,n,col){x.save();x.globalCompositeOperation="screen";for(var i=0;i<n;i++){var r=30+rnd(i)*90,px=((rnd(i+1)*1400+t*(40+rnd(i+2)*60))%1500)-200,py=rnd(i+3)*1080;var g=x.createRadialGradient(px,py,0,px,py,r);g.addColorStop(0,col);g.addColorStop(1,"rgba(0,0,0,0)");x.fillStyle=g;x.fillRect(px-r,py-r,2*r,2*r)}x.restore()}
 function serif(txt,X0,Y0,px,col,p,align){x.save();x.font="italic 500 "+px+"px "+SERIF;x.textAlign=align||"left";x.fillStyle=col;var ch=txt.split(""),cx=X0;if(align==="center"){cx=X0-x.measureText(txt).width/2;x.textAlign="left"}
  ch.forEach(function(L,i){var v=ease(p*1.6-i*.04);if(v<=0){cx+=x.measureText(L).width;return}x.globalAlpha=v;x.fillText(L,cx,Y0+(1-v)*px*.5);cx+=x.measureText(L).width});x.restore()}
@@ -37,21 +38,21 @@ function draw(t){var si=shotAt(t),s=SH[si],o=s[1],t0=T0[si],t1=si+1<T0.length?T0
  x.setTransform(1,0,0,1,0,0);x.filter="none";x.globalAlpha=1;x.globalCompositeOperation="source-over";
  var sh=Math.sin(t*1.7)*5+Math.sin(t*3.9+1)*2.5+Math.sin(t*11.3)*.8,sv=Math.cos(t*1.3)*4+Math.sin(t*5.1)*1.6,rot=Math.sin(t*.9)*.004;
  var push=1+.06*p;x.translate(540+sh,540+sv);x.rotate(rot);x.scale(push,push);x.translate(-540,-540);var cam=-p*60;
- if(s[0]==="macro"){backdrop(o.tint,cam);table(cam);var f=Math.max(0,14*(1-eio(lt/1.2)));x.save();x.translate(540,600);x.scale(1.5-.15*p,1.5-.15*p);x.translate(-540,-600);product(o.p,560,560,560,f,-.05);x.restore();bokeh(t,7,"rgba(255,230,190,.35)");
-  x.fillStyle="rgba(20,12,6,.35)";x.fillRect(-200,860,1480,400);serif(o.w,90,1000,150,"#fff4e6",(lt-.6)/1.2);label("FreshDrop · N°01",96,120,"#1d1510",(lt-.2)/.5)}
- if(s[0]==="cut"){backdrop(o.tint,cam*2);table(cam*2);var side=si%2?1:-1;product(o.p,540+side*80+cam*-1.2,560,600,Math.max(0,8*(1-lt/.35)),side*.04);bokeh(t+si,4,"rgba(255,255,255,.25)");
-  x.save();x.font="italic 500 110px "+SERIF;x.fillStyle="#15110d";x.textAlign=side>0?"left":"right";var e=ease(lt/.3);x.globalAlpha=e;x.fillText(o.w,side>0?70:1010,200+(1-e)*30);x.restore()}
+ if(s[0]==="macro"){backdrop(o.tint,cam);table(cam);var f=Math.max(0,14*(1-eio(lt/1.2)));x.save();x.translate(540,600);x.scale(1.5-.15*p,1.5-.15*p);x.translate(-540,-600);product(o.p,560,560,560,f,-.05);if(o.p==="night")glowN(560,540,1);x.restore();bokeh(t,7,"rgba(255,230,190,.35)");
+  x.fillStyle="rgba(20,12,6,.35)";x.fillRect(-200,860,1480,400);serif(o.w,90,1000,150,"#fff4e6",(lt-.6)/1.2);label(o.lab,96,120,"#1d1510",(lt-.2)/.5)}
+ if(s[0]==="cut"){backdrop(o.tint,cam*2);table(cam*2);var side=si%2?1:-1;product(o.p,540+side*80+cam*-1.2,560,600,Math.max(0,8*(1-lt/.35)),side*.04);if(o.p==="night")glowN(540+side*80+cam*-1.2,540,1);bokeh(t+si,4,"rgba(255,255,255,.25)");
+  x.save();x.font="italic 500 110px "+SERIF;x.fillStyle=o.p==="night"?"#fff4e6":"#15110d";x.textAlign=side>0?"left":"right";var e=ease(lt/.3);x.globalAlpha=e;x.fillText(o.w,side>0?70:1010,200+(1-e)*30);if(o.pr){x.font="600 30px "+SANS;x.letterSpacing="3px";x.globalAlpha=ease((lt-.2)/.3);x.fillText(o.pr.toUpperCase(),side>0?74:1006,1000)}x.restore()}
  if(s[0]==="hero"){backdrop(o.tint,cam);table(cam);var f2=Math.abs(Math.sin(cl(lt/1.4)*Math.PI/2)-1)*10;product(o.p,560,520,680,f2,-.03);bokeh(t,6,"rgba(255,210,150,.3)");
-  label("N°03 — Umbrella Sunshade",90,130,"#2b1a0f",(lt-.3)/.5);serif("Opens in 3 seconds.",90,220,72,"#2b1a0f",(lt-.6)/1.2);
-  x.save();x.font="700 96px "+SANS;x.fillStyle="#1a1a1a";x.globalAlpha=ease((lt-1.4)/.4);x.fillText("€28.99",90,1000);x.restore()}
- if(s[0]==="count"){backdrop(o.tint,cam);var ks=["trunk","dog","mount","back","kit","board","stand","trip","wrench"];ks.forEach(function(k,n){var depth=.5+rnd(n+40)*.9,px=(n%3)*360+180+cam*depth*3+(depth-1)*sh*4,py=(n/3|0)*330+200;x.save();x.globalAlpha=.85*ease((lt-n*.08)/.4);
+  label("Washable Pet Bed",90,130,"#2b1a0f",(lt-.3)/.5);serif("For your best friend.",90,220,72,"#2b1a0f",(lt-.6)/1.2);
+  x.save();x.font="700 96px "+SANS;x.fillStyle="#1a1a1a";x.globalAlpha=ease((lt-1.4)/.4);x.fillText("€26.99",90,1000);x.restore()}
+ if(s[0]==="count"){backdrop(o.tint,cam);var ks=["cat","cubes","bed","torch","mat","utensil","trunk","mount","stand"];ks.forEach(function(k,n){var depth=.5+rnd(n+40)*.9,px=(n%3)*360+180+cam*depth*3+(depth-1)*sh*4,py=(n/3|0)*330+200;x.save();x.globalAlpha=.85*ease((lt-n*.08)/.4);
    x.fillStyle="rgba(245,240,232,"+(0.9)+")";x.shadowColor="rgba(0,0,0,.45)";x.shadowBlur=30;x.shadowOffsetY=14;x.translate(px,py);x.rotate((rnd(n)-.5)*.12);x.fillRect(-140*depth,-140*depth,280*depth,280*depth);x.restore();x.save();x.globalAlpha=ease((lt-n*.08)/.4);product(k,px,py,240*depth,Math.abs(depth-1)*6,0);x.restore()});
   x.fillStyle="rgba(10,12,16,"+(.62*ease((lt-.6)/.5))+")";x.fillRect(-200,-200,1480,1480);var nmb=Math.round(96*eio((lt-.6)/1.4));
   x.save();x.font="700 300px "+SANS;x.fillStyle="#FFE600";x.textAlign="center";x.globalAlpha=ease((lt-.6)/.3);x.fillText(String(nmb),540,560);x.restore();serif("products. One store.",540,680,70,"#fff",(lt-1.4)/1.2,"center");
   x.save();x.font="600 40px "+SANS;x.fillStyle="#fff";x.textAlign="center";x.globalAlpha=ease((lt-2.2)/.4);x.fillText("Prices from €5.99",540,790);x.restore()}
  if(s[0]==="poster"){backdrop(o.tint,cam);table(cam,1);x.save();x.translate(540+cam*.5,470);x.rotate(-.025);x.shadowColor="rgba(0,0,0,.5)";x.shadowBlur=50;x.shadowOffsetY=30;x.fillStyle="#f7f3ec";x.fillRect(-330,-330,660,660);x.shadowColor="transparent";if(AD)x.drawImage(AD,-300,-300,600,600);x.restore();bokeh(t,5,"rgba(255,220,170,.3)");
   label("FreshDrop · Shop the drop",90,1010,"#1e140c",(lt-.3)/.5)}
- if(s[0]==="end"){backdrop(["#1a1410","#0a0806"],cam);x.save();x.filter="blur(18px)";x.globalAlpha=.55;product("umb",540,560,900,0,0);x.restore();x.fillStyle="rgba(8,6,4,.45)";x.fillRect(-200,-200,1480,1480);bokeh(t,8,"rgba(255,200,120,.25)");
+ if(s[0]==="end"){backdrop(["#1a1410","#0a0806"],cam);x.save();x.filter="blur(18px)";x.globalAlpha=.55;product("bed",540,560,900,0,0);x.restore();x.fillStyle="rgba(8,6,4,.45)";x.fillRect(-200,-200,1480,1480);bokeh(t,8,"rgba(255,200,120,.25)");
   var e=ease((lt-.1)/.5);if(LOGO){x.save();x.globalAlpha=e;x.drawImage(LOGO,480,250-(1-e)*20,120,120);x.restore()}
   x.save();x.font="700 128px "+SANS;x.fillStyle="#fff";x.textAlign="center";x.globalAlpha=ease((lt-.3)/.5);x.fillText("FreshDrop",540,520);x.restore();serif("Everything you need. One drop.",540,600,48,"#f3e6d6",(lt-.6)/1.2,"center");
   var pu=ease((lt-1)/.4)*(1+.03*Math.sin(lt*6));x.save();x.translate(540,720);x.scale(pu,pu);x.fillStyle="#FFE600";x.beginPath();x.roundRect(-230,-62,460,124,62);x.fill();x.font="700 60px "+SANS;x.fillStyle="#111";x.textAlign="center";x.textBaseline="middle";x.fillText("Shop now →",0,4);x.restore();
