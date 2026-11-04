@@ -33,7 +33,7 @@ function photo(id,cx,cy,sz,s,rot){var im=IM[id];x.save();x.translate(cx,cy);x.ro
 function words(t,t0){var w=a.h.toUpperCase().split(" "),lines=[],cur="";x.font=F(130,700);w.forEach(function(s){var tt=cur?cur+" "+s:s;if(x.measureText(tt).width>940&&cur){lines.push(cur);cur=s}else cur=tt});lines.push(cur);
  var y0=540-(lines.length-1)*70,n=0;lines.forEach(function(L,li){var parts=L.split(" "),tw=x.measureText(L).width,xx=540-tw/2;parts.forEach(function(p){var st=t0+n*.22,v=cl((t-st)/.35);if(v>0){var pw=x.measureText(p).width;x.save();x.translate(xx+pw/2,y0+li*140);var s=v<1?2.4-1.4*back(v):1;x.scale(s,s);x.globalAlpha=cl(v*2);
   x.fillStyle=(n%2?a.a1:a.fg);x.textAlign="center";x.textBaseline="middle";x.fillText(p,0,0);x.restore()}xx+=x.measureText(p+" ").width;n++})});}
-var B=[0,.17,.39,.6,.8,1].map(function(f){return f*D});
+var B=q.get("b")?[0].concat(q.get("b").split(",").map(Number),[D]):[0,.17,.39,.6,.8,1].map(function(f){return f*D});
 function scene(t){var k=0;while(k<4&&t>=B[k+1])k++;return k}
 function render(t){x.setTransform(1,0,0,1,0,0);var k=scene(t),lt=t-B[k],len=B[k+1]-B[k];bg(t);
  if(k===0){x.save();x.translate(540,540);var zz=1+.05*lt;x.scale(zz,zz);x.rotate(Math.sin(lt*3)*.015);x.translate(-540,-540);words(t,.25);x.restore();x.font=F(30,600,1);x.fillStyle=a.fg;x.globalAlpha=cl((lt-1.6)/.5);x.textAlign="center";x.fillText("FRESHDROP PRESENTS",540,140);x.globalAlpha=1}
