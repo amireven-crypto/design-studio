@@ -64,3 +64,6 @@ PNG export uses the browser's own canvas (`canvas.toBlob`), no libraries.
 - The "Inspired by … style" labels describe a general design trend only; these sites are not affiliated.
 - Fredoka font (SIL Open Font License 1.1), self-hosted in `assets/fonts/` – see `LICENSE-NOTE.txt`.
 - FreshDrop product photos belong to FreshDrop (Amir Even).
+
+## FreshDrop video spots
+`ads/freshdrop/video/ad-1..10.mp4` — 1080×1080 H.264/AAC motion-graphics spots with Hebrew voiceover (edge-tts), rendered from `tools/spot/spot.html` by `tools/render-spots.js` (headless Chrome frames → ffmpeg). The competition page plays them in ranked order, muted autoplay, sound on first click/tap/key.
