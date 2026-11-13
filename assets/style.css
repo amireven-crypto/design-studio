@@ -82,7 +82,9 @@ input[type=text],input[type=email],textarea,select{background:var(--glass-strong
 dialog::backdrop{background:rgba(20,20,20,.25);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 .ig button:hover{background:var(--accent)!important}
 
-/* Dark glass theme (overrides) */
+/* Dark glass theme — only when the visitor's system is set to dark (prefers-color-scheme). Light = the original cream glass above. */
+:root{color-scheme:light dark}
+@media (prefers-color-scheme: dark){
 :root{--bg:#0A0A0D;--card:#16161B;--card-2:rgba(255,255,255,.08);--line:rgba(255,255,255,.16);--text:#F5F5F0;--muted:#A8A8A0;
   --accent-text:#F59A4A;--brand-tint:rgba(212,255,58,.12);
   --glass:rgba(255,255,255,.07);--glass-strong:rgba(255,255,255,.10);--glass-border:rgba(255,255,255,.14);--blur:blur(20px) saturate(1.4)}
@@ -115,6 +117,7 @@ pre{background:rgba(0,0,0,.45);color:#E8E8E0}
 th,td{border-bottom-color:rgba(255,255,255,.12)}
 .ig button:hover{color:#141414}
 .stage canvas{box-shadow:0 30px 80px rgba(0,0,0,.6)}
+}
 /* QA 2026-11-13 tap targets: rail icons never shrink below 44px, file/colour inputs >=44px, inline text links get a >=24px hit area. */
 .rail a{flex:none;min-width:44px;min-height:44px}
 input[type=file],input[type=color]{min-height:44px;padding-block:8px;box-sizing:border-box}
