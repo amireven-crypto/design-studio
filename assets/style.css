@@ -115,3 +115,9 @@ pre{background:rgba(0,0,0,.45);color:#E8E8E0}
 th,td{border-bottom-color:rgba(255,255,255,.12)}
 .ig button:hover{color:#141414}
 .stage canvas{box-shadow:0 30px 80px rgba(0,0,0,.6)}
+/* QA 2026-11-13 tap targets: rail icons never shrink below 44px, file/colour inputs >=44px, inline text links get a >=24px hit area. */
+.rail a{flex:none;min-width:44px;min-height:44px}
+input[type=file],input[type=color]{min-height:44px;padding-block:8px;box-sizing:border-box}
+:where(p,li,dd,td,small,figcaption,.note,.src,.refs) > a:not(.btn){padding-block:5px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+main a[href^="#ad-"]:not(.btn){display:inline-block;min-height:24px;padding-block:5px}
+main details > summary{padding-block:11px}
