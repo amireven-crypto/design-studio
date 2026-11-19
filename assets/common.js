@@ -6,7 +6,7 @@
     ['share','social/','Social posts'],['mail','email/','Email'],['blocks','components/','Components'],['star','icons/','Icons'],['palette','brand-kit/','Brand kit']];
   var cur=document.documentElement.dataset.page||'';
   var nav=document.getElementById('rail');
-  if(nav){nav.innerHTML=items.map(function(i){return '<a href="'+root+i[1]+'" title="'+i[2]+'"'+(cur===i[1]?' aria-current="page"':'')+'>'+dsIcon(i[0],i[2])+'</a>'}).join('')+'<span class="sp"></span>';}
+  if(nav){nav.innerHTML=items.map(function(i){return '<a href="'+root+i[1]+'" title="'+i[2]+'"'+(cur===i[1]?' aria-current="page"':'')+'>'+dsIcon(i[0],i[2])+'</a>'}).join('')+'<span class="sp"></span><a href="'+root+'accessibility/" title="Accessibility statement"'+(cur==='accessibility/'?' aria-current="page"':'')+'><svg class="ico" viewBox="0 0 24 24" role="img" aria-label="Accessibility statement"><circle cx="12" cy="4.5" r="1.8"/><path d="M5 8.5l7 1.5 7-1.5M12 10v4.5M12 14.5l-3 6M12 14.5l3 6"/></svg></a>';}
   var t=document.createElement('div');t.className='toast';t.setAttribute('role','status');document.body.appendChild(t);
   window.dsToast=function(m){t.textContent=m;t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(function(){t.classList.remove('on')},1600)};
   window.dsCopy=function(txt,msg){

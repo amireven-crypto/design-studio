@@ -5,12 +5,13 @@
 <meta name="robots" content="noindex, nofollow"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light dark"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#FAF6EC"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0A0A0D">
 <title>Icons · Design Studio</title><meta name="description" content="Icons - Design Studio starter by Amir Even">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='10' fill='%23D4FF3A'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="../assets/style.css?ver=20261113-scheme"></head>
+<link rel="stylesheet" href="../assets/style.css?ver=20261113-scheme"><link rel="stylesheet" href="../assets/a11y/a11y.css?v=20261118-a11y"><script src="../assets/a11y/a11y.js?v=20261118-a11y" data-site="design-studio" data-pos="right" data-reload="0" data-statement="../accessibility/"></script>
+</head>
 <body><a class="skip" href="#main">Skip to content</a><div class="app"><nav id="rail" class="rail" aria-label="Sections"></nav>
 <main id="main"><style>.ig{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px}.ig button{background:var(--card);border:0;border-radius:22px;padding:18px 6px;color:var(--text);cursor:pointer;display:grid;justify-items:center;gap:10px;font:600 .75rem var(--font)}.ig button:hover{background:var(--accent);color:var(--on-accent)}.ig svg{width:30px;height:30px}</style>
 <div class="top"><div><p class="kicker">Original line icons · 24×24</p><h1>Icons</h1><p>Click an icon to copy its SVG.</p></div><div class="pills"><button class="btn primary" id="dl" type="button">Download sprite.svg</button><a class="btn ghost" href="../">Back to hub</a></div></div>
 <div class="card" style="margin-bottom:14px"><label for="q">Search icons</label><input id="q" type="text" placeholder="e.g. mail"></div><p id="cnt" aria-live="polite"></p><div class="ig" id="ig"></div></main></div>
-<script src="../assets/icons.js"></script><script src="../assets/common.js"></script><script>(function(){var ig=document.getElementById('ig'),q=document.getElementById('q');
+<script src="../assets/icons.js"></script><script src="../assets/common.js?v=20261118-a11y"></script><script>(function(){var ig=document.getElementById('ig'),q=document.getElementById('q');
 function svg(n){return '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">'+DS_ICONS[n]+'</svg>'}
 function render(){var k=q.value.toLowerCase().trim(),ns=Object.keys(DS_ICONS).filter(function(n){return n.toLowerCase().indexOf(k)>-1});
 ig.innerHTML=ns.map(function(n){return '<button type="button" data-n="'+n+'" aria-label="Copy '+n+' icon">'+dsIcon(n)+'<span>'+n+'</span></button>'}).join('');document.getElementById('cnt').textContent=ns.length+' icons';}
